@@ -1,0 +1,156 @@
+.contact-section {
+    width: 100%;
+    padding: 60px 20px;
+    background-color: hsl(0, 0%, 100%);
+
+
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    cursor: pointer;
+    .clickable-text {
+        cursor: pointer;
+        color: #007bff;
+        text-decoration: underline;
+      }
+      
+      .copied-tooltip {
+        color: green;
+        font-size: 14px;
+        margin-left: 10px;
+      }
+      
+}
+
+.left-container {
+    flex: 1;
+    margin-right: 20px;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+p {
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 8px;
+}
+
+.contact-details {
+    margin-top: 40px;
+}
+
+.right-container {
+    flex: 1;
+    margin-left: 20px;
+    .contact-name-div{
+        position: absolute;
+        top: 0;
+        right: 2%;
+    }
+}
+
+.contact-form h2 {
+    font-size: 28px;
+    font-weight: 200;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 100px;
+}
+
+input,.message {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    background-color: #eee;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #007bff;
+}
+
+textarea{
+    height: 120px !important;
+    resize: none;
+    background-color: #eee;
+    padding-left: 12px;
+}
+
+button {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+}
+/* Responsive design */
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+        .right-container {
+            
+                .contact-form h2{
+                     margin-top: 40px;
+                }
+    
+            .contact-name-div{
+                position: absolute;
+                top: 50%;
+                right: 0;
+                left: 0;
+            }
+        }
+        
+
+    h1 {
+        font-size: 36px;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+           form{
+            margin-top:20px !important;
+           }
+    input, .message {
+        width: 80vw;
+    }
+}
+}
