@@ -4,47 +4,38 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'https://kiranrup.vercel.app',
+  credentials: true
+}));
 app.use(bodyParser.json());
-const allowCors = fn => async (req, res) => {
-  res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', 'https://kiranrup.vercel.app')
-  // another common pattern
-  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  )
-  if (req.method === 'OPTIONS') {
-    res.status(200).end()
-    return
-  }
-  return await fn(req, res)
-}
-
-const handler = (req, res) => {
-  const d = new Date()
-  res.end(d.toString())
-}  
 
 // Transporter for Nodemailer
 const transporter = nodemailer.createTransport({
-  service: 'gmail', // You can use another email service like Outlook, Yahoo, etc.
+  service: 'gmail',
   auth: {
-    user: 'dhinaashwin11@gmail.com', // Your Gmail account
-    pass: 'zdsonclqrqpzeezi', // App-specific password or your account password
+    user: 'dhinaashwin11@gmail.com',
+    pass: 'zdsonclqrqpzeezi',
   },
 });
 
+transporter.verify((error, success) => {
+  if (error) {
+    console.log('Error in nodemailer configuration: ', error);
+  } else {
+    console.log('Nodemailer is ready to send emails');
+  }
+});
+
 app.post('/send-email', (req, res) => {
+  console.log(req.body); // Log incoming request data
   const { name, email, mobile, message } = req.body;
 
   const mailOptions = {
     from: email,
-    to: 'kiranrup05@gmail.com', // The recipient's email address
-    subject: `New message from ${name},
-    text: You have a new message from:
+    to: 'kiranrup05@gmail.com',
+    subject: `New message from ${name}`,
+    text: `You have a new message from:
            Name: ${name}
            Email: ${email}
            Mobile: ${mobile}
@@ -62,7 +53,7 @@ app.post('/send-email', (req, res) => {
   });
 });
 
-const PORT =3001;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-}); 
+});
