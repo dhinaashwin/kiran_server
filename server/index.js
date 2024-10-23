@@ -26,6 +26,9 @@ transporter.verify((error, success) => {
     console.log('Nodemailer is ready to send emails');
   }
 });
+app.get((req,res) => {
+    res.send('Connected');
+}) 
 
 app.post('/send-email', (req, res) => {
   console.log(req.body); // Log incoming request data
